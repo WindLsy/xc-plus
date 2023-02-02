@@ -1,3 +1,7 @@
 /.idea/
 /xc-plus-parent/xc-plus-parent.iml
 /xc-plus-base/xc-plus-base.iml
+/xc-plus-content/xc-plus-content.iml
+/xc-plus-content/xc-plus-content-model/xc-plus-content-model.iml
+/xc-plus-content/xc-plus-content-api/xc-plus-content-api.iml
+/xc-plus-content/xc-plus-content-service/xc-plus-content-service.iml
