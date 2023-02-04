@@ -2,7 +2,6 @@ package com.xc.base.model;
 
 import lombok.Data;
 import lombok.ToString;
-
 import java.util.List;
 
 /**
@@ -32,4 +31,5 @@ public class PageResult<T> {
         this.page = page;
         this.pageSize = pageSize;
     }
+
 }

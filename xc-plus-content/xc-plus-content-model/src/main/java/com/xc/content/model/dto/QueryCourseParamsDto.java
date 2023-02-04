@@ -1,4 +1,4 @@
-package com.xc.model.dto;
+package com.xc.content.model.dto;
 
 import lombok.Data;
 
