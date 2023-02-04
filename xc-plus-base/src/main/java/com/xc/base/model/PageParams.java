@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.ToString;
 
 /**
- * 分页工具
+ * 接收分页参数
  *
  * @author: LJ
  * @create: 2023/2/3
@@ -24,6 +24,7 @@ public class PageParams {
     private Long pageNo = DEFAULT_PAGE_CURRENT;
 
     //每页记录数默认值
+    @ApiModelProperty("每页记录数")
     private Long pageSize = DEFAULT_PAGE_SIZE;
 
     public PageParams(){
