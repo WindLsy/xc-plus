@@ -22,17 +22,20 @@
     
     ![image-20230203235228074](https://qnyun.linshiyou.cn/images/image-20230203235228074.png)
 
-### 第一天相关相关问题
+### 第一天开发中遇到的问题
 
-git 版本冲突问题
+#### 1. git 版本冲突问题
+
 - 本地文件版本与目标分支中版本不同的时候进行文件合并就会出现版本冲突
 - 解决方式：手动合并确定最后版本即可。
 
-maven依赖版本冲突问题
+#### 2. maven依赖版本冲突问题
+
 - 可以通过exclusions排除依赖
 - 使用父工程锁定版本号<dependencyManagement>
 
-MySQL
+#### 3. MySQL
+
 - MySQL常见存储引擎及区别
   - InnoDB
     - 支持事务、聚簇索引：索引和数据放在同一个文件中、支持表锁、行锁：并发度更高
@@ -51,7 +54,7 @@ MySQL
   - 设置字段默认值，比如：状态、创建时间等。
   - 注意字段的约束，比如：非空、唯一、主键等
 
-SpringBoot常用的注解
+#### 4.  SpringBoot常用的注解
 
 - @RestController = @ResponseBody + @Controller：实现rest接口开发，返回json数据，
 
@@ -64,7 +67,7 @@ SpringBoot常用的注解
 
   
 
-项目的开发流程
+### 项目的开发流程
 
 - 产品人员设计产品原型。
 - 讨论需求。
@@ -82,3 +85,51 @@ SpringBoot常用的注解
 
 1. 数据字典
 2. 课程查询
+3. MySQL树形查询
+   - 递归
+
+### 第二天开发中遇到的问题
+
+#### 1. 浏览器同源策略
+
+- 同源策略是浏览器的一种安全机制，只要协议、注意、端口有一个不同，就不满足同源。
+
+- 需要跨域处理，才能被浏览器解析。
+
+- 跨域常见处理：
+
+  - 添加响应头：Access-Control-Allow-Origin：*
+
+    - 在spring中可以在controller类上使用注解`@CrossOrigin`解决跨域问题
+
+  - 通过nginx代理跨域：由于服务端之间没有跨域，浏览器通过nginx去访问跨域地址。
+
+    ![image-20230204221200083](https://qnyun.linshiyou.cn/images/image-20230204221200083.png)
+
+#### 2. 编译之后的文件之中没有xml文件
+
+- 需要在maven中添加如下内容
+
+- ```xml
+  <build>
+      <!--编译打包过虑配置-->
+      <resources>
+          <resource>
+              <directory>src/main/resources</directory>
+              <filtering>true</filtering>
+              <includes>
+                  <include>**/*</include>
+              </includes>
+          </resource>
+          <resource>
+              <directory>src/main/java</directory>
+              <includes>
+                  <include>**/*.xml</include>
+              </includes>
+          </resource>
+      </resources>
+      <plugins>
+  </build>
+  ```
+
+- 
