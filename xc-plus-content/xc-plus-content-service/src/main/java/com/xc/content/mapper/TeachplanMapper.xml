@@ -27,4 +27,76 @@
         id, pname, parentid, grade, media_type, start_time, end_time, description, timelength, orderby, course_id, course_pub_id, status, is_preview, create_date, change_date
     </sql>
 
+
+    <resultMap id="selectTreeNodesMap" type="com.xc.content.model.dto.TeachplanDto">
+
+        <id column="one_id" property="id"/>
+        <result column="one_pname" property="pname"/>
+        <result column="one_parentid"     property="parentid" />
+        <result column="one_grade"  property="grade" />
+        <result column="one_mediaType"   property="mediaType" />
+        <result column="one_stratTime"   property="stratTime" />
+        <result column="one_endTime"   property="endTime" />
+        <result column="one_orderby"   property="orderby" />
+        <result column="one_courseId"   property="courseId" />
+        <result column="one_coursePubId"   property="coursePubId" />
+        <!--一对多，用ofType-->
+        <collection property="teachPlanTreeNodes" ofType="com.xc.content.model.dto.TeachplanDto">
+            <id column="two_id" property="id"/>
+            <result column="two_pname" property="pname"/>
+            <result column="two_parentid"     property="parentid" />
+            <result column="two_grade"  property="grade" />
+            <result column="two_mediaType"   property="mediaType" />
+            <result column="two_stratTime"   property="stratTime" />
+            <result column="two_endTime"   property="endTime" />
+            <result column="two_orderby"   property="orderby" />
+            <result column="two_courseId"   property="courseId" />
+            <result column="two_coursePubId"   property="coursePubId" />
+            <!--一对一用javaType-->
+            <association property="teachplanMedia" javaType="com.xc.content.model.po.TeachplanMedia">
+                <id column="teachplanMeidaId" property="id"/>
+                <result column="mediaFilename" property="mediaFilename"/>
+                <result column="mediaId" property="mediaId"/>
+            </association>
+        </collection>
+
+    </resultMap>
+
+    <select id="selectTreeNodes" parameterType="long" resultMap="selectTreeNodesMap">
+
+        SELECT
+            one.id one_id,
+            one.pname one_pname,
+            one.parentid one_parentid,
+            one.grade one_grade,
+            one.media_type one_mediaType,
+            one.start_time one_stratTime,
+            one.end_time one_endTime,
+            one.orderby one_orderby,
+            one.course_id one_courseId,
+            one.course_pub_id one_coursePubId,
+            two.id two_id,
+            two.pname two_pname,
+            two.parentid two_parentid,
+            two.grade two_grade,
+            two.media_type two_mediaType,
+            two.start_time two_stratTime,
+            two.end_time two_endTime,
+            two.orderby two_orderby,
+            two.course_id two_courseId,
+            two.course_pub_id two_coursePubId,
+            m.media_fileName mediaFilename,
+            m.id teachplanMeidaId,
+            m.media_id mediaId
+        FROM
+            teachplan one
+                INNER JOIN teachplan two ON two.parentid = one.id
+                LEFT JOIN teachplan_media m ON m.teachplan_id = two.id
+        WHERE  one.parentid='0' and one.course_id = #{courseId}
+        ORDER BY
+            one.orderby,
+            two.orderby
+    </select>
+
+
 </mapper>
