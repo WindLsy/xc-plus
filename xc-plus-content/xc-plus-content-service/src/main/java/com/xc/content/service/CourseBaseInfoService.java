@@ -4,6 +4,7 @@ import com.xc.base.model.PageParams;
 import com.xc.base.model.PageResult;
 import com.xc.content.model.dto.AddCourseDto;
 import com.xc.content.model.dto.CourseBaseInfoDto;
+import com.xc.content.model.dto.EditCourseDto;
 import com.xc.content.model.dto.QueryCourseParamsDto;
 import com.xc.content.model.po.CourseBase;
 
@@ -31,4 +32,14 @@ public interface CourseBaseInfoService {
      * @return
      */
     CourseBaseInfoDto createCourseBase(Long companyId, AddCourseDto addCourseDto);
+
+    CourseBaseInfoDto getCourseBaseInfo(Long courseId);
+
+    /**
+     * 只能修改自己机构的课程
+     * @param companyId 机构id
+     * @param dto 修改课程信息
+     * @return
+     */
+    CourseBaseInfoDto updateCourseBase(Long companyId, EditCourseDto dto);
 }
