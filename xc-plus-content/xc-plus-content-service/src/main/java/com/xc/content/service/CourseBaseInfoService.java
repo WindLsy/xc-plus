@@ -2,6 +2,8 @@ package com.xc.content.service;
 
 import com.xc.base.model.PageParams;
 import com.xc.base.model.PageResult;
+import com.xc.content.model.dto.AddCourseDto;
+import com.xc.content.model.dto.CourseBaseInfoDto;
 import com.xc.content.model.dto.QueryCourseParamsDto;
 import com.xc.content.model.po.CourseBase;
 
@@ -20,4 +22,13 @@ public interface CourseBaseInfoService {
      * @return
      */
     PageResult<CourseBase> queryCourseBaseList(PageParams params, QueryCourseParamsDto queryCourseParamsDto);
+
+
+    /**
+     * 新增课程
+     * @param companyId 培训结构ID
+     * @param addCourseDto 新增课程的信息
+     * @return
+     */
+    CourseBaseInfoDto createCourseBase(Long companyId, AddCourseDto addCourseDto);
 }

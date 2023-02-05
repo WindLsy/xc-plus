@@ -86,7 +86,8 @@
 1. 数据字典
 2. 课程查询
 3. MySQL树形查询
-   - 递归
+   - 递归查询
+4. 新增课程
 
 ### 第二天开发中遇到的问题
 
@@ -132,4 +133,41 @@
   </build>
   ```
 
-- 
+#### 3. Spring中事务失效场景
+
+- Spring有8中事务失效场景
+
+  1. 抛出检查异常导致事务不能正确回滚
+
+  2. 业务方法内自己 try-catch 异常导致事务不能正确回滚
+  3. aop 切面顺序导致导致事务不能正确回滚
+  4. 非 public 方法导致的事务失效
+  5. 父子容器导致的事务失效
+  6. 调用本类方法不经过代理
+  7. @Transactional 没有保证原子行为
+  8. @Transactional 方法导致的 synchronized 失效
+
+#### 4. Mybatis分页拦截器
+
+- Mybatis分页拦截器实现
+- 工作原理
+  - 首先分页参数放到ThreadLocal中，拦截执行的sql
+  - 根据数据库类型添加对应的分页语句重写sql将之转换为两条Sql语句：查询总数和分页查询
+    - 例如：(select * from table where a) 转换为 (select count(*) from table where a)和(select * from tablewhere a limit ,)计算出total总条数、pageNum当前第几页、pageSize每页大小和当前页的数据，是否为首页，是否为尾页，总页数等。
+
+#### 5. 查询一个树形表的方法
+
+- 当层级固定时可以用表的自链接进行查询。
+- 如果想灵活查询每个层级可以使用mysql递归方法，使用`with recursive`实现。
+
+#### 6. MyBatis的ResultType和ResultMap的区别？
+
+- ResultType：指定映射类型，只要查询的字段名和类型的属性名匹配可以自动映射。
+- ResultMap：自定义映射规则，当查询的字段名和映射类型的属性不匹配时可以通过ResultMap自定义
+  映射规则，也可以实现一对多、一对一映射。
+
+#### 7. MyBatis中#{} 和 ${} 有什么区别？
+
+- ${} 用于在动态 sql中拼接字符串，可能导致sql注入。
+- #{}是标记一个占位符，可以防止sql注入。
+
