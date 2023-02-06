@@ -6,6 +6,12 @@ server:
 spring:
   application:
     name: system-service
+  cloud:
+    nacos:
+      server-addr: 192.168.101.65:8848
+      discovery:
+        namespace: dev148
+        group: xuecheng-plus-project
 
 # 日志文件配置路径
 logging:
@@ -15,6 +21,6 @@ logging:
 swagger:
   title: "学成在线内容管理系统"
   description: "内容系统管理系统对课程相关信息进行业务管理数据"
-  base-package: com.xuecheng.content
+  base-package: com.xc.content
   enabled: true
   version: 1.0.0

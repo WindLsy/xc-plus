@@ -1,21 +1,31 @@
-server:
-  servlet:
-    context-path: /content
-  port: 63040
 #微服务配置
 spring:
   application:
     name: content-api
-
-# 日志文件配置路径
-logging:
-  config: classpath:log4j2-dev.xml
-
-
-# swagger 文档配置
-swagger:
-  title: "学成在线内容管理系统"
-  description: "内容系统管理系统对课程相关信息进行业务管理数据"
-  base-package: com.xc.content
-  enabled: true
-  version: 1.0.0
+  cloud:
+    nacos:
+      server-addr: 192.168.101.65:8848
+      discovery:
+        namespace: dev148
+        group: xuecheng-plus-project
+      config:
+        namespace: dev148
+        group: xuecheng-plus-project
+        file-extension: yaml
+        refresh-enabled: true
+#       api 服务依赖于service，当他加载service的配置的时候，service不会通过Nacos，所以需要单独在api中指定service的配置
+        extension-configs:
+          - data-id: content-service-${spring.profiles.active}.yaml
+            group: xuecheng-plus-project
+            refresh: true
+#       引入公用的配置文件
+        shared-configs:
+          - data-id: swagger-${spring.profiles.active}.yaml
+            group: xuecheng-plus-common
+            refresh: true
+          - data-id: logging-${spring.profiles.active}.yaml
+            group: xuecheng-plus-common
+            refresh: true
+  #profiles默认为dev
+  profiles:
+    active: dev
