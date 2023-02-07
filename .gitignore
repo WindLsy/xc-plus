@@ -1,20 +1,10 @@
-/.idea/
-/xc-plus-parent/xc-plus-parent.iml
-/xc-plus-base/xc-plus-base.iml
-/xc-plus-content/xc-plus-content.iml
-/xc-plus-content/xc-plus-content-model/xc-plus-content-model.iml
-/xc-plus-content/xc-plus-content-api/xc-plus-content-api.iml
-/xc-plus-content/xc-plus-content-service/xc-plus-content-service.iml
-/xc-plus-generator/xc-plus-generator.iml
-/xc-plus-generator/
-/logs/
-/xc-plus-system/xc-plus-system-service/xc-plus-system-service.iml
-/xc-plus-system/xc-plus-system.iml
-/xc-plus-system/xc-plus-system-model/xc-plus-system-model.iml
-/xc-plus-system/xc-plus-system-api/xc-plus-system-api.iml
-/xc-plus-gateway/xc-plus-gateway.iml
-/xc-plus-media/xuecheng-plus-media.iml
-/xc-plus-media/xc-plus-media.iml
-/xc-plus-media/xc-plus-media-service/xc-plus-media-service.iml
-/xc-plus-media/xc-plus-media-model/xc-plus-media-model.iml
-/xc-plus-media/xc-plus-media-api/xc-plus-media-api.iml
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+
+
+# 编译文件
+target/
