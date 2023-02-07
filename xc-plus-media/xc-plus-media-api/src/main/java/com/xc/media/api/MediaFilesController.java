@@ -40,7 +40,7 @@ public class MediaFilesController {
 
 
     /**
-     *
+     * 上传图片接口（文件）
      * @param filedata 文件数据
      * @param folder 桶下边的子目录
      * @param objectName 对象名称
