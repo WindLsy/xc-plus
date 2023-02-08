@@ -260,3 +260,20 @@
 
 - 通过代理对象控制事务
 - 事务失效（共有8种场景）
+- 事务传播行为
+
+#### 2. 为什么要用MinIO
+
+![image-20230208162512749](https://qnyun.linshiyou.cn/images/image-20230208162512749.png)
+
+#### 3. 怎么构建一个独立的文件服务
+
+![image-20230208162659406](https://qnyun.linshiyou.cn/images/image-20230208162659406.png)
+
+#### 4. 断点续传是怎么做的
+
+![image-20230208162908519](https://qnyun.linshiyou.cn/images/image-20230208162908519.png)
+
+#### 5. 分块文件清理问题
+
+ ![image-20230208163046062](https://qnyun.linshiyou.cn/images/image-20230208163046062.png)
